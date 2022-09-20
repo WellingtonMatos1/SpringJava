@@ -9,19 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "funcionario")
-public class Funcionario implements Serializable {
+@Table(name = "fornecedor")
+public class Fornecedor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_fun")
+    @Column(name = "cod_for")
     private Integer id;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cpf")
-    private String cpf;
+    @Column(name = "cnpj")
+    private String cnpj;
 
     @Column(name = "telefone")
     private String telefone;
@@ -38,13 +38,13 @@ public class Funcionario implements Serializable {
     @Column(name = "cidade")
     private String cidade;
 
-    public Funcionario() {
+    public Fornecedor() {
     }
 
-    public Funcionario(Integer id, String nome, String cpf, String telefone, String rua, String bairro, String cep, String cidade) {
+    public Fornecedor(Integer id, String nome, String cpf, String telefone, String rua, String bairro, String cep, String cidade) {
         this.id = id;
         this.nome = nome;
-        this.cpf = cpf;
+        this.cnpj = cnpj;
         this.telefone = telefone;
         this.rua = rua;
         this.bairro = bairro;
@@ -56,6 +56,10 @@ public class Funcionario implements Serializable {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -64,12 +68,12 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getTelefone() {
@@ -111,10 +115,10 @@ public class Funcionario implements Serializable {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-   @Override
+
+    @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
-    } 
+        return "Fornecedor{" + "id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
+    }
 
 }
