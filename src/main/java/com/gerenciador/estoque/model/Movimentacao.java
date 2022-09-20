@@ -1,5 +1,6 @@
 package com.gerenciador.estoque.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,42 +15,42 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="movimentacao")
-public class Movimentacao {
+public class Movimentacao implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="codmovimentacao")
-    private Integer codMovimentacao;
+    @Column(name="cod_mov")
+    private Integer id;
     
     @ManyToOne
-    @JoinColumn(name = "codfornecedor", referencedColumnName = "codfornecedor")
+    @JoinColumn(name = "cod_for", referencedColumnName = "cod_for")
     private Fornecedor fornecedor;
       
     @ManyToOne
-    @JoinColumn(name = "codfuncionario", referencedColumnName = "codfuncionario")
+    @JoinColumn(name = "cod_fun", referencedColumnName = "cod_for")
     private Funcionario funcionario;
     
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "codproduto")
+    @JoinColumn(name = "cod_prod")
     private List<Produto> produtos;
 
     public Movimentacao(){
     }
     
-    public Movimentacao(Integer codMovimentacao, Funcionario funcionario, List<Produto> produtos) {
-        this.codMovimentacao = codMovimentacao;
+    public Movimentacao(Integer id, Funcionario funcionario, List<Produto> produtos) {
+        this.id = id;
         this.funcionario = funcionario;
         this.produtos = produtos;
     }
 
-    public Movimentacao(Integer codMovimentacao, Fornecedor fornecedor, List<Produto> produtos) {
-        this.codMovimentacao = codMovimentacao;
+    public Movimentacao(Integer id, Fornecedor fornecedor, List<Produto> produtos) {
+        this.id = id;
         this.fornecedor = fornecedor;
         this.produtos = produtos;
     }
 
-    public Integer getCodMovimentacao() {
-        return codMovimentacao;
+    public Integer getId() {
+        return id;
     }
 
     public Fornecedor getFornecedor() {
@@ -80,11 +81,11 @@ public class Movimentacao {
         this.produtos.remove(produto);
     }
     
-    public void addQuantidadeProduto(Fornecedor fornecedor, Produto produto, int quantidade){
+    public void addQuantidadeProduto(Fornecedor fornecedor, Produto produto, Integer quantidade){
         produto.setQuantidade(produto.getQuantidade() + quantidade);
     }
     
-    public void removeQuantidadeProduto(Funcionario funcionario, Produto produto, int quantidade){
+    public void removeQuantidadeProduto(Funcionario funcionario, Produto produto, Integer quantidade){
            produto.setQuantidade(produto.getQuantidade() - quantidade);
     }
     
