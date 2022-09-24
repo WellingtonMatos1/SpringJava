@@ -23,11 +23,11 @@ public class Movimentacao implements Serializable {
     private Integer id;
     
     @ManyToOne
-    @JoinColumn(name = "cod_for", referencedColumnName = "cod_for")
+    @JoinColumn(name = "cod_for")
     private Fornecedor fornecedor;
       
     @ManyToOne
-    @JoinColumn(name = "cod_fun", referencedColumnName = "cod_for")
+    @JoinColumn(name = "cod_fun")
     private Funcionario funcionario;
     
     @OneToMany(cascade = CascadeType.ALL)
