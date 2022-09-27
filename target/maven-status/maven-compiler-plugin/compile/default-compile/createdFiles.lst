@@ -1,6 +1,6 @@
+com\gerenciador\estoque\GerenciadorApplication.class
+com\gerenciador\estoque\model\Funcionario.class
 com\gerenciador\estoque\repository\FuncionarioRepository.class
 com\gerenciador\estoque\controller\FuncionarioController.class
-com\gerenciador\estoque\GerenciadorApplication.class
 com\gerenciador\estoque\service\FuncionarioServiceImpl.class
 com\gerenciador\estoque\service\FuncionarioService.class
-com\gerenciador\estoque\model\Funcionario.class

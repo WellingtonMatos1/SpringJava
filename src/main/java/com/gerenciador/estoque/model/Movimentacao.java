@@ -32,7 +32,7 @@ public class Movimentacao implements Serializable {
     private Funcionario funcionario;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_prod", referencedColumnName = "cod_prod")
+    @JoinColumn(name = "cod_prod")
     private Produto produto;
 
     public Movimentacao(){

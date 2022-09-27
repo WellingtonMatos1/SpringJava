@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,9 +26,9 @@ public class Produto implements Serializable {
     @JoinColumn(name = "fornecedor",referencedColumnName = "cod_for")
     private Fornecedor fornecedor;
     
-    @OneToMany (cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_mov", referencedColumnName = "cod_mov")
-    private Integer codMov;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_mov")
+    private Movimentacao codMov;
     
     @Column(name = "nome")
     private String nome;
@@ -44,7 +45,7 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Integer codProduto, Fornecedor fornecedor, Integer codMov, String nome, String descricao, String tipo, int quantidade) {
+    public Produto(Integer codProduto, Fornecedor fornecedor, Movimentacao codMov, String nome, String descricao, String tipo, int quantidade) {
         this.codProduto = codProduto;
         this.fornecedor = fornecedor;
         this.codMov = codMov;
@@ -66,7 +67,7 @@ public class Produto implements Serializable {
         this.fornecedor = fornecedor;
     }
     
-     public Integer getCodMov() {
+     public Movimentacao getCodMov() {
         return codMov;
     }
 
