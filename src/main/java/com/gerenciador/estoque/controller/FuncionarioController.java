@@ -19,11 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class FuncionarioController {
-    /* Injeção de depência via anotação */
-    /* No instante que uma instância da classe CampoController é criada, uma instância da clsse CampoServiceImpl é injetada */
-    /* elimina a necessidade de getters e setters nas classes que serão injetadas */
-    /* não é a interface que é instanciada, mas a sua implementação */
-    /* a interface esconde a implementação e só pode ter uma classe que a implemente. Caso contrário, ocorrerá um erro */
+
     @Autowired
     private FuncionarioService funcionarioService;
     

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +25,10 @@ public class Produto implements Serializable {
     @JoinColumn(name = "fornecedor",referencedColumnName = "cod_for")
     private Fornecedor fornecedor;
     
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_mov", referencedColumnName = "cod_mov")
+    private Integer codMov;
+    
     @Column(name = "nome")
     private String nome;
     
@@ -39,9 +44,10 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Integer codProduto, Fornecedor fornecedor, String nome, String descricao, String tipo, int quantidade) {
+    public Produto(Integer codProduto, Fornecedor fornecedor, Integer codMov, String nome, String descricao, String tipo, int quantidade) {
         this.codProduto = codProduto;
         this.fornecedor = fornecedor;
+        this.codMov = codMov;
         this.nome = nome;
         this.descricao = descricao;
         this.tipo = tipo;
@@ -58,6 +64,10 @@ public class Produto implements Serializable {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+    
+     public Integer getCodMov() {
+        return codMov;
     }
 
     public String getNome() {
@@ -96,5 +106,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "Produto{" + "codProduto=" + codProduto + ", fornecedor=" + fornecedor + ", nome=" + nome + ", descricao=" + descricao + ", tipo=" + tipo + ", quantidade=" + quantidade + '}';
     }
-    
+     
 }

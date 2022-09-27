@@ -41,7 +41,7 @@ public class Fornecedor implements Serializable {
     public Fornecedor() {
     }
 
-    public Fornecedor(Integer id, String nome, String cpf, String telefone, String rua, String bairro, String cep, String cidade) {
+    public Fornecedor(Integer id, String nome, String cnpj, String telefone, String rua, String bairro, String cep, String cidade) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -52,7 +52,7 @@ public class Fornecedor implements Serializable {
         this.cidade = cidade;
     }
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

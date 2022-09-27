@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,23 +31,23 @@ public class Movimentacao implements Serializable {
     @JoinColumn(name = "cod_fun")
     private Funcionario funcionario;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_prod")
-    private List<Produto> produtos;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_prod", referencedColumnName = "cod_prod")
+    private Produto produto;
 
     public Movimentacao(){
     }
     
-    public Movimentacao(Integer id, Funcionario funcionario, List<Produto> produtos) {
+    public Movimentacao(Integer id, Funcionario funcionario, Produto produto) {
         this.id = id;
         this.funcionario = funcionario;
-        this.produtos = produtos;
+        this.produto = produto;
     }
 
-    public Movimentacao(Integer id, Fornecedor fornecedor, List<Produto> produtos) {
+    public Movimentacao(Integer id, Fornecedor fornecedor, Produto produto) {
         this.id = id;
         this.fornecedor = fornecedor;
-        this.produtos = produtos;
+        this.produto = produto;
     }
 
     public Integer getId() {
@@ -69,17 +70,14 @@ public class Movimentacao implements Serializable {
         this.funcionario = funcionario;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void addProdutos(Produto produto) {
-        this.produtos.add(produto);
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     
-    public void removeProdutos(Produto produto) {
-        this.produtos.remove(produto);
-    }
     
     public void addQuantidadeProduto(Fornecedor fornecedor, Produto produto, Integer quantidade){
         produto.setQuantidade(produto.getQuantidade() + quantidade);

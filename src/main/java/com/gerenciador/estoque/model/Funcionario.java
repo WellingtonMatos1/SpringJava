@@ -52,7 +52,7 @@ public class Funcionario implements Serializable {
         this.cidade = cidade;
     }
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
