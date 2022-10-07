@@ -21,7 +21,7 @@ public class MovimentacaoController {
     @Autowired
     private MovimentacaoService movimentacaoService;
     
-    @GetMapping("/movimentacao")
+    @GetMapping("/movimentacoes")
     public ResponseEntity<List<Movimentacao>> listaMovimentacoes(){
         return ResponseEntity.status(HttpStatus.OK).body(movimentacaoService.listaMovimentacoes());
     }
@@ -35,5 +35,4 @@ public class MovimentacaoController {
     public ResponseEntity<Movimentacao> salvaProduto(@RequestBody Movimentacao movimentacao){
         return ResponseEntity.status(HttpStatus.CREATED).body(movimentacaoService.salvaMovimentacao(movimentacao));
     }
-
 }
