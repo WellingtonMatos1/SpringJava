@@ -2,6 +2,7 @@ package com.gerenciador.estoque.controller;
 
 import com.gerenciador.estoque.model.Movimentacao;
 import com.gerenciador.estoque.service.MovimentacaoService;
+import io.swagger.annotations.Api;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@Api("Api Movimentação")
 public class MovimentacaoController {
     
     @Autowired

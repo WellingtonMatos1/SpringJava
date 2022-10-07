@@ -2,6 +2,10 @@ package com.gerenciador.estoque.controller;
 
 import com.gerenciador.estoque.model.Produto;
 import com.gerenciador.estoque.service.ProdutoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@Api("Api produto")
 public class ProdutoController {
     
     @Autowired
@@ -29,6 +34,11 @@ public class ProdutoController {
     }
 
     @GetMapping("produto/{cod_prod}")
+    @ApiOperation("Obter detalhes de um Produto")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Produto encontrado"),
+        @ApiResponse(code = 404, message = "Produto não encontrado")
+    })
     public ResponseEntity<Optional<Produto>> getByIdProduto(@PathVariable Integer cod_prod){
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.getByIdProduto(cod_prod));
     }

@@ -2,6 +2,10 @@ package com.gerenciador.estoque.controller;
 
 import com.gerenciador.estoque.model.Fornecedor;
 import com.gerenciador.estoque.service.FornecedorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@Api("Api fornecedores")
 public class FornecedorController {
     
     @Autowired
@@ -29,6 +34,11 @@ public class FornecedorController {
     }
 
     @GetMapping("fornecedor/{cod_for}")
+    @ApiOperation("Obter detalhes de um Fornecedor")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Fornecedor encontrado"),
+        @ApiResponse(code = 404, message = "Fornecedor não encontrado")
+    })
     public ResponseEntity<Optional<Fornecedor>> getByIdFornecedor(@PathVariable Integer cod_for){
         return ResponseEntity.status(HttpStatus.OK).body(fornecedorService.getByIdFornecedor(cod_for));
     }
