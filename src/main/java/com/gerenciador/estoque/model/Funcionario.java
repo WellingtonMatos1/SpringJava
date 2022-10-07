@@ -15,7 +15,7 @@ public class Funcionario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_fun")
-    private Integer id;
+    private Integer codFun;
 
     @Column(name = "nome")
     private String nome;
@@ -41,8 +41,8 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String cpf, String telefone, String rua, String bairro, String cep, String cidade) {
-        this.id = id;
+    public Funcionario(Integer codFun, String nome, String cpf, String telefone, String rua, String bairro, String cep, String cidade) {
+        this.codFun = codFun;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -52,8 +52,8 @@ public class Funcionario implements Serializable {
         this.cidade = cidade;
     }
     
-    public Integer getId() {
-        return id;
+    public Integer getcodFun() {
+        return codFun;
     }
 
     public String getNome() {
@@ -114,7 +114,6 @@ public class Funcionario implements Serializable {
     
    @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
+        return "Funcionario{" + "codFun=" + codFun + ", nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
     } 
-
 }

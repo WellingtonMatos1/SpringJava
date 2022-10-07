@@ -1,8 +1,7 @@
 package com.gerenciador.estoque.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,7 +19,7 @@ public class Movimentacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cod_mov")
-    private Integer id;
+    private Integer codMov;
     
     @ManyToOne
     @JoinColumn(name = "cod_for")
@@ -31,27 +29,28 @@ public class Movimentacao implements Serializable {
     @JoinColumn(name = "cod_fun")
     private Funcionario funcionario;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne
     @JoinColumn(name = "cod_prod")
     private Produto produto;
 
     public Movimentacao(){
     }
     
-    public Movimentacao(Integer id, Funcionario funcionario, Produto produto) {
-        this.id = id;
+    public Movimentacao(Integer codMov, Funcionario funcionario, Produto produto) {
+        this.codMov = codMov;
         this.funcionario = funcionario;
         this.produto = produto;
     }
 
-    public Movimentacao(Integer id, Fornecedor fornecedor, Produto produto) {
-        this.id = id;
+    public Movimentacao(Integer codMov, Fornecedor fornecedor, Produto produto) {
+        this.codMov = codMov;
         this.fornecedor = fornecedor;
         this.produto = produto;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getCodMov() {
+        return codMov;
     }
 
     public Fornecedor getFornecedor() {
@@ -91,5 +90,4 @@ public class Movimentacao implements Serializable {
     public String toString() {
         return "";
     }
-
 }

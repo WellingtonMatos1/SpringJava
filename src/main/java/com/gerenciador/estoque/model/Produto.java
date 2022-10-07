@@ -1,6 +1,8 @@
 package com.gerenciador.estoque.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,13 +23,14 @@ public class Produto implements Serializable {
     @Column(name = "cod_prod")
     private Integer codProduto;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fornecedor",referencedColumnName = "cod_for")
+    @OneToOne
+    @JoinColumn(name = "cod_for")
     private Fornecedor fornecedor;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_mov")
-    private Movimentacao codMov;
+    private List<Movimentacao> movimentacoes;
     
     @Column(name = "nome")
     private String nome;
@@ -45,10 +47,10 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(Integer codProduto, Fornecedor fornecedor, Movimentacao codMov, String nome, String descricao, String tipo, int quantidade) {
+    public Produto(Integer codProduto, Fornecedor fornecedor, List<Movimentacao> movimentacoes, String nome, String descricao, String tipo, Integer quantidade) {
         this.codProduto = codProduto;
         this.fornecedor = fornecedor;
-        this.codMov = codMov;
+        this.movimentacoes = movimentacoes;
         this.nome = nome;
         this.descricao = descricao;
         this.tipo = tipo;
@@ -58,17 +60,21 @@ public class Produto implements Serializable {
     public Integer getCodProduto() {
         return codProduto;
     }
-    
-     public Fornecedor getFornecedor() {
+
+    public Fornecedor getFornecedor() {
         return fornecedor;
     }
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
-    
-     public Movimentacao getCodMov() {
-        return codMov;
+
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
+    }
+
+    public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
     }
 
     public String getNome() {
@@ -98,14 +104,14 @@ public class Produto implements Serializable {
     public Integer getQuantidade() {
         return quantidade;
     }
-    
-    protected void setQuantidade(Integer quantidade){
+
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
     @Override
     public String toString() {
-        return "Produto{" + "codProduto=" + codProduto + ", fornecedor=" + fornecedor + ", nome=" + nome + ", descricao=" + descricao + ", tipo=" + tipo + ", quantidade=" + quantidade + '}';
+        return "Produto{" + "codProduto=" + codProduto + ", fornecedor=" + fornecedor + ", movimentacoes=" + movimentacoes + ", nome=" + nome + ", descricao=" + descricao + ", tipo=" + tipo + ", quantidade=" + quantidade + '}';
     }
-     
+
 }

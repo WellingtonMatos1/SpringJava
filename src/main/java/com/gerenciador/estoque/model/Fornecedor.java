@@ -15,7 +15,7 @@ public class Fornecedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_for")
-    private Integer id;
+    private Integer codFor;
 
     @Column(name = "nome")
     private String nome;
@@ -41,8 +41,8 @@ public class Fornecedor implements Serializable {
     public Fornecedor() {
     }
 
-    public Fornecedor(Integer id, String nome, String cnpj, String telefone, String rua, String bairro, String cep, String cidade) {
-        this.id = id;
+    public Fornecedor(Integer codFor, String nome, String cnpj, String telefone, String rua, String bairro, String cep, String cidade) {
+        this.codFor = codFor;
         this.nome = nome;
         this.cnpj = cnpj;
         this.telefone = telefone;
@@ -52,8 +52,8 @@ public class Fornecedor implements Serializable {
         this.cidade = cidade;
     }
     
-    public Integer getId() {
-        return id;
+    public Integer getCodFor() {
+        return codFor;
     }
 
     public String getNome() {
@@ -114,7 +114,7 @@ public class Fornecedor implements Serializable {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
+        return "Fornecedor{" + "codFor=" + codFor + ", nome=" + nome + ", cnpj=" + cnpj + ", telefone=" + telefone + ", rua=" + rua + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + '}';
     }
 
 }
