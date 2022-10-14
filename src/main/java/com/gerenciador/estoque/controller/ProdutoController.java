@@ -22,13 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@Api("Api produto")
+@Api(value = "Produto", tags = {"Produto"}, description = " ")
 public class ProdutoController {
     
     @Autowired
     private ProdutoService produtoService;
     
     @GetMapping("/produtos")
+    @ApiOperation("Obter detalhes de todos Produtos")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Os produtos foram encontrados!"),
+        @ApiResponse(code = 404, message = "Nenhum produto não foi encontrado!")
+    })
     public ResponseEntity<List<Produto>> listaProdutos(){
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.listaProdutos());
     }
@@ -36,26 +41,37 @@ public class ProdutoController {
     @GetMapping("produto/{cod_prod}")
     @ApiOperation("Obter detalhes de um Produto")
     @ApiResponses({
-        @ApiResponse(code = 200, message = "Produto encontrado"),
-        @ApiResponse(code = 404, message = "Produto não encontrado")
+        @ApiResponse(code = 200, message = "O produto foi encontrado!"),
+        @ApiResponse(code = 404, message = "O produto não foi encontrado!")
     })
     public ResponseEntity<Optional<Produto>> getByIdProduto(@PathVariable Integer cod_prod){
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.getByIdProduto(cod_prod));
     }
 
     @PostMapping("produto")
+    @ApiOperation("Cadastrar um Produto")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "O produto foi cadastrado com sucesso!"),
+        @ApiResponse(code = 404, message = "O produto não pôde ser cadastrado!")
+    })
     public ResponseEntity<Produto> salvaProduto(@RequestBody Produto produto){
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.salvaProduto(produto));
     }
 
     @PutMapping("produto")
+    @ApiOperation("Atualizar um Produto")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "O produto foi atualizado com sucesso!"),
+        @ApiResponse(code = 404, message = "O produto não pôde ser atualizado!")
+    })
     public ResponseEntity<Produto> atualizaProduto(@RequestBody Produto produto){
         return ResponseEntity.status(HttpStatus.OK).body(produtoService.atualizaProduto(produto));
     }
     
     @DeleteMapping("produto/{cod_prod}")
+    @ApiOperation("Remover um Produto")
     public ResponseEntity<String> deleteByIdProduto(@PathVariable Integer cod_prod){
         produtoService.deleteByIdProduto(cod_prod);
-        return ResponseEntity.status(HttpStatus.OK).body("Produto removido com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body("O produto foi removido com sucesso");
     }    
 }

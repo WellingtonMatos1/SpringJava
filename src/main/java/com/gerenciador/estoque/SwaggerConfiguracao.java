@@ -29,8 +29,10 @@ public Docket docket(){
 private ApiInfo apiInfo(){
     return new ApiInfoBuilder()
         .title("API - Estoque")
-        .description("API para sistema de estocagem")
+        .description("Sistema de Estocagem")
         .version("1.0")
+        .termsOfServiceUrl("https://github.com/WellingtonMatos1/SpringJava")
+        .license("Wellington Matos & Cesar A. Inocêncio")
         .build();
 }
 }
